@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Install on Centos &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Install kernel from elrepo" href="elrepo_kernel_inst.html" />
+    <link rel="prev" title="Install on Ubuntu" href="ubuntu.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="install.html">Installation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="generic_inst.html">Generic Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debian.html">Install on Debian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubuntu.html">Install on Ubuntu</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Install on Centos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="elrepo_kernel_inst.html">Install kernel from elrepo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/control_features.html">Control features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/recommendations.html">Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/BRAS_tuning.html">BRAS tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="install.html">Installation</a></li>
+      <li class="breadcrumb-item active">Install on Centos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/installation/centos.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="install-on-centos">
+<span id="install-centos"></span><h1>Install on Centos<a class="headerlink" href="#install-on-centos" title="Link to this heading"></a></h1>
+<p>For compile with modules <strong>vlan_mon</strong> and <strong>ipoe</strong> on centos need install vanilla linux kernel or <a class="reference internal" href="elrepo_kernel_inst.html#elrepo-kernel-inst"><span class="std std-ref">Install kernel from elrepo</span></a> . If that not needed, just set <strong>-DBUILD_IPOE_DRIVER=FALSE</strong> and <strong>-DBUILD_VLAN_MON_DRIVER=FALSE</strong> on cmake.</p>
+<p><strong>Preparation</strong></p>
+<p>Before compile and build package need satisfy some dependencies</p>
+<ul class="simple">
+<li><p><strong>rpm-build</strong> - open-source system that manages the build process</p></li>
+<li><p><strong>cmake</strong> - open-source system that manages the build process</p></li>
+<li><p><strong>gcc</strong> - GNU Compiler Collection (GCC) is a compiler system</p></li>
+<li><p><strong>git</strong> - version-control system for tracking changes, (need for downloading source code)</p></li>
+<li><p><strong>pcre-devel</strong> - source code of pcre lib, accel-ppp need it for use reg expression</p></li>
+<li><p><strong>openssl-devel</strong> - source code of lib ssl, accel-ppp need it for use regular expression</p></li>
+<li><p><strong>lua-devel</strong> - this need for create custom username (IPoE) from packet. Script write on lua language</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>yum<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>rpm-build<span class="w"> </span>make<span class="w"> </span>cmake<span class="w"> </span>gcc<span class="w"> </span>git<span class="w"> </span>pcre-devel<span class="w"> </span>openssl-devel<span class="w"> </span>lua-devel
+</pre></div>
+</div>
+<p>After install dependencies, download accel-ppp source code with git client, tree master . Master tree contain actual patches last release.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/accel-ppp/accel-ppp.git<span class="w"> </span>/opt/accel-ppp-code
+</pre></div>
+</div>
+<p>Create directory for build source code and go to this directory.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>/opt/accel-ppp-code/build
+<span class="nb">cd</span><span class="w"> </span>/opt/accel-ppp-code/build/
+</pre></div>
+</div>
+<p>For building code need we can set next params:</p>
+<ul class="simple">
+<li><p><strong>-DBUILD_IPOE_DRIVER=TRUE</strong> include IPoE module.This module need if you want use accel-ppp as shared interface.</p></li>
+<li><p><strong>-DBUILD_VLAN_MON_DRIVER=TRUE</strong> include vlan monitoring module. If you want create vlan automatically on analyse IP headers with regular expression set on accel-ppp config file. (Available for IPoE and PPPoE)</p></li>
+<li><p><strong>-DKDIR=/usr/src/kernels/`uname -r`</strong> sets path to Linux kernel source code. Need only for build IPOE, VLAN-MON.</p></li>
+<li><p><strong>-DCMAKE_INSTALL_PREFIX=/usr</strong> path for install executable code. If you build DEB package, not recommended change this.</p></li>
+<li><p><strong>-DCPACK_TYPE=Centos7</strong> this arguments for building RPM package. If used centos other version, set it.</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DBUILD_IPOE_DRIVER<span class="o">=</span>TRUE<span class="w"> </span>-DBUILD_VLAN_MON_DRIVER<span class="o">=</span>TRUE<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr<span class="w"> </span>-DKDIR<span class="o">=</span>/usr/src/kernels/<span class="sb">`</span>uname<span class="w"> </span>-r<span class="sb">`</span><span class="w"> </span>-DLUA<span class="o">=</span>TRUE<span class="w"> </span>-DCPACK_TYPE<span class="o">=</span>Centos7<span class="w"> </span>..
+</pre></div>
+</div>
+<div class="admonition-notice admonition">
+<p class="admonition-title">Notice:</p>
+<p>ended symbols <strong>..</strong> sets path to accel-ppp source code, not delete this! Or you can replace it full path to accel-ppp-code like /opt/accel-ppp-code/</p>
+</div>
+<p>Compile:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<p>Create RPM package:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cpack<span class="w"> </span>-G<span class="w"> </span>RPM
+</pre></div>
+</div>
+<p>Install package:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rpm<span class="w"> </span>-ivh<span class="w"> </span>accel-ppp.rpm
+</pre></div>
+</div>
+<p>If accel-ppp was build with modules <strong>ipoe</strong> and <strong>vlan_mon</strong>, need next:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>./drivers/ipoe/driver/ipoe.ko<span class="w"> </span>/lib/modules/<span class="sb">`</span>uname<span class="w"> </span>-r<span class="sb">`</span>/kernel/net
+cp<span class="w"> </span>./drivers/vlan_mon/driver/vlan_mon.ko<span class="w"> </span>/lib/modules/<span class="sb">`</span>uname<span class="w"> </span>-r<span class="sb">`</span>/kernel/net
+depmod<span class="w"> </span>-a
+</pre></div>
+</div>
+<p>If you have success packet install, rename config file to accel-ppp.conf</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>/etc/accel-ppp.conf.dist<span class="w"> </span>/etc/accel-ppp.conf
+</pre></div>
+</div>
+<p>Edit accel-ppp.conf for you schemas and run accel-ppp</p>
+<p><strong>Run as systemd unit:</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>start<span class="w"> </span>accel-ppp
+</pre></div>
+</div>
+<p>or run manual (not recommended)</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>accel-pppd<span class="w"> </span>-d<span class="w"> </span>-c<span class="w"> </span>/etc/accel-ppp.conf<span class="w"> </span>-p<span class="w"> </span>/var/run/accel-ppp.pid
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="elrepo_kernel_inst.html">Install kernel from elrepo</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ubuntu.html" class="btn btn-neutral float-left" title="Install on Ubuntu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="elrepo_kernel_inst.html" class="btn btn-neutral float-right" title="Install kernel from elrepo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

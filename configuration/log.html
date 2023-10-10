@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[log] &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="[cli]" href="cli.html" />
+    <link rel="prev" title="[shaper]" href="shaper.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="configuration.html">Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="modules.html">[modules]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">[core]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">[common]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="radius.html">[radius]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap_secrets.html">[chap-secrets]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ppp.html">[ppp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pppoe.html">[pppoe]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pptp.html">[pptp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2tp.html">[l2tp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipoe.html">[ipoe]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip-pool.html">[ip-pool]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sstp.html">[sstp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dns.html">[dns]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-dns.html">[ipv6-dns]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-pool.html">[ipv6-pool]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-nd.html">[ipv6-nd]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-dhcp.html">[ipv6-dhcp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shaper.html">[shaper]</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">[log]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#config-overview">Config overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logs-rotation">logs rotation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">[cli]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pppd_compat.html">[pppd-compat]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snmp.html">SNMP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/control_features.html">Control features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/recommendations.html">Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/BRAS_tuning.html">BRAS tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="configuration.html">Configuration</a></li>
+      <li class="breadcrumb-item active">[log]</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/configuration/log.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="log">
+<h1>[log]<a class="headerlink" href="#log" title="Link to this heading"></a></h1>
+<p>Configuration of log and log_file modules.</p>
+<section id="config-overview">
+<h2>Config overview<a class="headerlink" href="#config-overview" title="Link to this heading"></a></h2>
+<dl>
+<dt><strong>log-file=/path/to/file</strong></dt><dd><p>By default is not defined. Required if used <code class="docutils literal notranslate"><span class="pre">[modules]log_file</span></code></p>
+<p>Path to file to write general log.</p>
+</dd>
+<dt><strong>log-emerg=/path/to/file</strong></dt><dd><p>By default is not defined. Required if used <code class="docutils literal notranslate"><span class="pre">[modules]log_file</span></code></p>
+<p>Path to file to write emergency messages.</p>
+</dd>
+<dt><strong>log-fail-file=/path/to/file</strong></dt><dd><p>By default is not defined.</p>
+<p>Path to file to write authentication failed session log.</p>
+</dd>
+<dt><strong>log-debug=/path/to/file</strong></dt><dd><p>By default is not defined.</p>
+<p>Path to file to write all debug messages, also include mikrotime and threads numbers.</p>
+</dd>
+<dt><strong>log-tcp=x.x.x.x:port</strong></dt><dd><p>By default is not defined. Required if used <code class="docutils literal notranslate"><span class="pre">[modules]log_tcp</span></code></p>
+<p>Send logs to specified host. (Need add examples)</p>
+</dd>
+<dt><strong>syslog=ident[,facility]</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">syslog=accel-pppd,daemon</span></code></p>
+<p>Send logs to system logger. Facility may be: daemon, local0-local7 or numeric value.</p>
+</dd>
+<dt><strong>copy=0|1</strong></dt><dd><p>By default is not defined.</p>
+<p>If this options is given, logging engine will duplicate session log in general log.  (Useful when per-session/per-user logs are not used).</p>
+</dd>
+<dt><strong>per-session-dir=dir</strong></dt><dd><p>By default is not defined.</p>
+<p>Directory for session logs. If specified each session will be logged separately to file which name is unique session identifier.</p>
+</dd>
+<dt><strong>per-user-dir=dir</strong></dt><dd><p>By default is not defined.</p>
+<p>Directory for user logs. If specified all sessions of same user will be logged to file which name is user name.</p>
+</dd>
+<dt><strong>per-session=0|1</strong></dt><dd><p>By default is not defined.</p>
+<p>If specified then each session of same user will be logger separately to directory specified by “per-user-dir” and subdirectory which name is user name and to file which name os unique session identifier.</p>
+</dd>
+<dt><strong>level=n</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">level=0</span></code></p>
+<p>Specifies log level which values are:</p>
+<p><code class="docutils literal notranslate"><span class="pre">0</span></code> turn off all logging</p>
+<p><code class="docutils literal notranslate"><span class="pre">1</span></code> log only error messages</p>
+<p><code class="docutils literal notranslate"><span class="pre">2</span></code> log error and warning messages</p>
+<p><code class="docutils literal notranslate"><span class="pre">3</span></code> log error, warning and minimum information messages (use this level in conjuction with verbose option of other modules if you need verbose logging)</p>
+<p><code class="docutils literal notranslate"><span class="pre">4</span></code> log error, warning and full information messages (use this level in conjuction with verbose option of other modules if you need verbose logging)</p>
+<p><code class="docutils literal notranslate"><span class="pre">5</span></code> log all messages including debug messages</p>
+</dd>
+</dl>
+</section>
+<section id="logs-rotation">
+<h2>logs rotation<a class="headerlink" href="#logs-rotation" title="Link to this heading"></a></h2>
+<p>For rotation logs can be used system logrotate utility. Needs create file <code class="docutils literal notranslate"><span class="pre">/etc/logrotate.d/accel-ppp</span></code> and put next:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>/var/log/accel-ppp/*.log<span class="w"> </span><span class="o">{</span>
+<span class="w">  </span>missingok
+<span class="w">  </span>sharedscripts
+<span class="w">  </span>postrotate
+<span class="w">    </span><span class="nb">test</span><span class="w"> </span>-r<span class="w"> </span>/var/run/accel-pppd.pid<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-HUP<span class="w"> </span><span class="sb">`</span>cat<span class="w"> </span>/var/run/accel-pppd.pid<span class="sb">`</span>
+<span class="w">  </span>endscript
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<p>For correct work <em>logrotate</em> utility need run <code class="docutils literal notranslate"><span class="pre">accel-pppd</span></code> daemon with <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">/var/run/accel-pppd.pid</span></code> argument.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If accel-ppp run with gdb (GNU debugger) for find bugs, you need disable logs rotation, because it will makes to daemon crash.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="shaper.html" class="btn btn-neutral float-left" title="[shaper]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cli.html" class="btn btn-neutral float-right" title="[cli]" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

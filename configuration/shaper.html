@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[shaper] &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="[log]" href="log.html" />
+    <link rel="prev" title="[ipv6-dhcp]" href="ipv6-dhcp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="configuration.html">Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="modules.html">[modules]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">[core]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">[common]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="radius.html">[radius]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap_secrets.html">[chap-secrets]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ppp.html">[ppp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pppoe.html">[pppoe]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pptp.html">[pptp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2tp.html">[l2tp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipoe.html">[ipoe]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip-pool.html">[ip-pool]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sstp.html">[sstp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dns.html">[dns]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-dns.html">[ipv6-dns]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-pool.html">[ipv6-pool]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-nd.html">[ipv6-nd]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-dhcp.html">[ipv6-dhcp]</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">[shaper]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#config-overview">Config overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fiter-id">Fiter-Id</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cisco-avpair">Cisco AVPair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mikrotik">Mikrotik</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="log.html">[log]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">[cli]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pppd_compat.html">[pppd-compat]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snmp.html">SNMP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/control_features.html">Control features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/recommendations.html">Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/BRAS_tuning.html">BRAS tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="configuration.html">Configuration</a></li>
+      <li class="breadcrumb-item active">[shaper]</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/configuration/shaper.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="shaper">
+<span id="id1"></span><h1>[shaper]<a class="headerlink" href="#shaper" title="Link to this heading"></a></h1>
+<p>Accel-ppp support many ways customisation rate-limit. Also limiting clients bandwidths sometimes called as QoS (Quality of Service), but QoS has more possibilities. For enable rate-liniter, we can sets <code class="docutils literal notranslate"><span class="pre">shaper</span></code> in section <code class="docutils literal notranslate"><span class="pre">[modules]</span></code>.</p>
+<section id="config-overview">
+<h2>Config overview<a class="headerlink" href="#config-overview" title="Link to this heading"></a></h2>
+<dl>
+<dt><strong>attr=name</strong></dt><dd><p>By default: <code class="docutils literal notranslate"><span class="pre">attr=Filter-Id</span></code>.</p>
+<p>Specifies which radius attribute contains rate information. RADIUS server can transmit <code class="docutils literal notranslate"><span class="pre">Filter-Id=1000</span></code>, means 1000Kbit both up-stream and down-stream rate or <code class="docutils literal notranslate"><span class="pre">Filter-Id=2000/3000</span></code>, means 2000Kbit down-stream rate and 3000Kbit up-stream rate.</p>
+</dd>
+<dt><strong>attr-up=name</strong></dt><dd><p>By default is not defined.</p>
+<p>Specifies which radius attribute contains rate information for <strong>upstream</strong>. Often used if needs separate <em>upstream</em> and <em>downstream</em> attributes.</p>
+</dd>
+<dt><strong>attr-down=name</strong></dt><dd><p>By default is not defined.</p>
+<p>Specifies which radius attribute contains rate information for <strong>downstream</strong>. Often used if needs separate <em>upstream</em> and <em>downstream</em> attributes.</p>
+</dd>
+<dt><strong>vendor=name</strong></dt><dd><p>By default is not defined.</p>
+<p>Specifies vendor name  for support attributes of other vendors like <em>Cisco-AVPair</em> or <em>Mikrotik</em>.</p>
+</dd>
+</dl>
+<p>Example for Cisco:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">vendor</span><span class="o">=</span>Cisco
+<span class="nv">attr</span><span class="o">=</span>Cisco-AVPair
+</pre></div>
+</div>
+<p>Example for Mikrotik:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">vendor</span><span class="o">=</span>Mikrotik
+<span class="nv">attr</span><span class="o">=</span>Mikrotik-Rate-Limit
+</pre></div>
+</div>
+<dl>
+<dt><strong>burst-factor=n</strong></dt><dd><p>By default is not defined.</p>
+<p>Burst will be calculated as rate multiply burst-factor. Common <code class="docutils literal notranslate"><span class="pre">burst-factor</span></code> for upstream calculated as <code class="docutils literal notranslate"><span class="pre">burst-factor*10</span></code>.</p>
+</dd>
+<dt><strong>up-burst-factor=n</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">up-burst-factor=1</span></code></p>
+<p>Specifies burst factor for <strong>upstream</strong>.</p>
+</dd>
+<dt><strong>down-burst-factor=n</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">down-burst-factor=0.1</span></code></p>
+<p>Specifies burst factor for <strong>downstream</strong>.</p>
+</dd>
+<dt><strong>cburst=n</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">cburst=1534</span></code></p>
+<p>Specifies amount of bytes that can be burst at ‘infinite’ speed. Recommendation: cburst should be equal to at most one average packet</p>
+</dd>
+<dt><strong>latency=n</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">latency=0.05</span></code></p>
+<p>Specifies latency (in milliseconds) parameter of tbf qdisc which set maximum amount of time a packet can sit in the TBF.</p>
+</dd>
+<dt><strong>mpu=n</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">mpu=0</span></code></p>
+<p>Specifies mpu parameter in bytes of tbf qdisc and policer. Determines the minimal token usage for a packet.</p>
+</dd>
+<dt><strong>r2q=n</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">r2q=10</span></code></p>
+<p>Specifies r2q parameter of root htb qdisc.</p>
+</dd>
+<dt><strong>quantum=n</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">quantum=1500</span></code></p>
+<p>Specifies quantum parameter of htb classes. Amount of bytes a flow is allowed to dequeue before the scheduler moves to the next class.</p>
+</dd>
+<dt><strong>moderate-quantum=1|0</strong></dt><dd><p>By default is disabled <code class="docutils literal notranslate"><span class="pre">moderate-quantum=0</span></code></p>
+<p>If fixed quantum is not specified and this option is specified then shaper module will check for quantum value is valid (in range 1000-200000).</p>
+</dd>
+<dt><strong>fwmark=n</strong></dt><dd><p>By default is disabled: <code class="docutils literal notranslate"><span class="pre">fwmark=0</span></code></p>
+<p>Specifies the fwmark for traffic that won’t be passed through shaper.</p>
+</dd>
+<dt><strong>up-limiter=police|htb</strong></dt><dd><p>By default is: <code class="docutils literal notranslate"><span class="pre">up-limiter=police</span></code></p>
+<p>Specifes upstream rate limiting method.</p>
+</dd>
+<dt><strong>down-limiter=tbf|htb</strong></dt><dd><p>By default is: <code class="docutils literal notranslate"><span class="pre">down-limiter=tbf</span></code></p>
+<p>Specifies downstream rate limiting method.</p>
+</dd>
+<dt><strong>ifb=ifb_ifname</strong></dt><dd><p>By default <code class="docutils literal notranslate"><span class="pre">ifb=ifb0</span></code></p>
+<p>Specifies name of ifb interface, used only for <code class="docutils literal notranslate"><span class="pre">up-limiter=htb</span></code></p>
+</dd>
+<dt><strong>leaf-qdisc=qdisc parameters</strong></dt><dd><p>By default is not defined.</p>
+<p>In case if htb is used as up-limiter or down-limiter specified leaf qdisc can be attached automaticaly. At present <em>sfq</em> and <em>fq_codel qdiscs</em> are implemented. <em>CoDel</em> (the name comes from “controlled delay”) is Active Queue Manager. Parameters are same as for tc:</p>
+<p><code class="docutils literal notranslate"><span class="pre">sfq</span> <span class="pre">[limit</span> <span class="pre">NUMBER]</span> <span class="pre">[perturb</span> <span class="pre">SECS]</span> <span class="pre">[quantum</span> <span class="pre">BYTES]</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">fq_codel</span> <span class="pre">[limit</span> <span class="pre">PACKETS]</span> <span class="pre">[flows</span> <span class="pre">NUMBER]</span> <span class="pre">[target</span> <span class="pre">TIME]</span> <span class="pre">[interval</span> <span class="pre">TIME]</span> <span class="pre">[quantum</span> <span class="pre">BYTES]</span> <span class="pre">[[no]ecn]</span></code></p>
+</dd>
+<dt><strong>rate-multiplier=n</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">rate-multiplier=1</span></code></p>
+<p>Due to accel-ppp operates with rates in kilobit basis if you send rates in different basis then you can use this option to bring your values to kilobits. For <code class="docutils literal notranslate"><span class="pre">vendor=Mikrotik</span></code> often sets <code class="docutils literal notranslate"><span class="pre">rate-multiplier=0.001</span></code></p>
+</dd>
+<dt><strong>rate-limit=downstream/upstream</strong></dt><dd><p>By default is not defined.</p>
+<p>Specifies default speed if there are no radius attributes.</p>
+</dd>
+<dt><strong>time-range=range_id,time_start-time_end</strong></dt><dd><p>By default is not defined.</p>
+<p>Specifies time ranges for automatic rate reconfiguration. You can specify multiple such options.</p>
+<p>Configuration example:</p>
+</dd>
+</dl>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[shaper]
+time-range=1,1:00-3:00
+time-range=2,3:00-5:00
+time-range=3,5:00-7:00
+</pre></div>
+</div>
+<p>The first number is time range identifier. To define a specific rates uses following format of radius attributes: range-id,rate, range-id,down-rate/up-rate or cisco-like.</p>
+<p>As an example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Filter-Id=1000
+Filter-Id=1,2000
+Filter-Id=2,3000
+Filter-Id=3,4000
+</pre></div>
+</div>
+<p>That means: set 1000Kbit by default, set 2000Kbit in time range 1, set 3000Kbit in time range 2 and set 4000Kbit in time range 3.
+You have to pass multiple Filter-Id attributes to utilize this functionality.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+</section>
+<section id="fiter-id">
+<h2>Fiter-Id<a class="headerlink" href="#fiter-id" title="Link to this heading"></a></h2>
+<section id="cisco-avpair">
+<h3>Cisco AVPair<a class="headerlink" href="#cisco-avpair" title="Link to this heading"></a></h3>
+</section>
+<section id="mikrotik">
+<h3>Mikrotik<a class="headerlink" href="#mikrotik" title="Link to this heading"></a></h3>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ipv6-dhcp.html" class="btn btn-neutral float-left" title="[ipv6-dhcp]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="log.html" class="btn btn-neutral float-right" title="[log]" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

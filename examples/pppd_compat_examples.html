@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pppd-compat examples &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Debugging" href="../debugging/index.html" />
+    <link rel="prev" title="Lua examples" href="lua_examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/control_features.html">Control features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/recommendations.html">Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/BRAS_tuning.html">BRAS tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lua_examples.html">Lua examples</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pppd-compat examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="examples.html">Examples</a></li>
+      <li class="breadcrumb-item active">pppd-compat examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/pppd_compat_examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pppd-compat-examples">
+<span id="id1"></span><h1>pppd-compat examples<a class="headerlink" href="#pppd-compat-examples" title="Link to this heading"></a></h1>
+<p>Accel-ppp module <code class="docutils literal notranslate"><span class="pre">[pppd-compat]</span></code> is useful to execute scripts when <strong>ip-up|ip-down|ip-change</strong> event for customer’s session occurs.</p>
+<p>Examples below show how to put cusomer’s IPv4 &amp; IPv6 to specific ipsets, depending on the value of received RADIUS-attribute named <code class="docutils literal notranslate"><span class="pre">Filter-Id</span></code>. For example, it can be useful if one needs to grant access from <strong>customer ipset</strong> only to <strong>specific ipset</strong>.</p>
+<p>Example Accel-ppp configuration:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>modules<span class="o">]</span>
+<span class="w">  </span>pppd_compat
+
+<span class="o">[</span>pppd-compat<span class="o">]</span>
+<span class="w">  </span>ip-up<span class="o">=</span>/etc/accel-ppp_ip-up.sh
+<span class="w">  </span>ip-down<span class="o">=</span>/etc/accel-ppp_ip-down.sh
+<span class="w">  </span>ip-change<span class="o">=</span>/etc/accel-ppp_ip-up.sh
+<span class="w">  </span>radattr-prefix<span class="o">=</span>/run/radattr
+</pre></div>
+</div>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<p><strong>ipsets</strong> must exist before scripts are executed.</p>
+</div>
+<p>Example ipsets creation:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+ipset<span class="w"> </span>create<span class="w"> </span>soc_res_v4<span class="w"> </span>hash:net<span class="w"> </span>family<span class="w"> </span>inet
+ipset<span class="w"> </span>create<span class="w"> </span>soc_res_v6<span class="w"> </span>hash:net<span class="w"> </span>family<span class="w"> </span>inet6
+ipset<span class="w"> </span>create<span class="w"> </span>blk_res_v4<span class="w"> </span>hash:net<span class="w"> </span>family<span class="w"> </span>inet
+ipset<span class="w"> </span>create<span class="w"> </span>blk_res_v6<span class="w"> </span>hash:net<span class="w"> </span>family<span class="w"> </span>inet6
+ipset<span class="w"> </span>create<span class="w"> </span>blk_usr_v4<span class="w"> </span>hash:ip<span class="w"> </span>family<span class="w"> </span>inet
+ipset<span class="w"> </span>create<span class="w"> </span>soc_usr_v6<span class="w"> </span>hash:net<span class="w"> </span>family<span class="w"> </span>inet6
+ipset<span class="w"> </span>create<span class="w"> </span>soc_usr_v4<span class="w"> </span>hash:ip<span class="w"> </span>family<span class="w"> </span>inet
+ipset<span class="w"> </span>create<span class="w"> </span>blk_usr_v6<span class="w"> </span>hash:net<span class="w"> </span>family<span class="w"> </span>inet6
+</pre></div>
+</div>
+<p>Example /etc/accel-ppp_ip-up.sh script:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+<span class="c1"># Option &quot;Active&quot;.</span>
+<span class="nv">ACTIVE_FILTER_ID</span><span class="o">=</span><span class="m">1</span>
+
+<span class="c1"># Option &quot;Paysystems&quot;.</span>
+<span class="nv">BLOCK_SET_V4</span><span class="o">=</span><span class="s1">&#39;blk_usr_v4&#39;</span>
+<span class="nv">BLOCK_SET_V6</span><span class="o">=</span><span class="s1">&#39;blk_usr_v6&#39;</span>
+<span class="nv">BLOCK_FILTER_ID</span><span class="o">=</span><span class="m">2</span>
+
+<span class="c1"># Option &quot;Social&quot;.</span>
+<span class="nv">SOCIAL_SET_V4</span><span class="o">=</span><span class="s1">&#39;soc_usr_v4&#39;</span>
+<span class="nv">SOCIAL_SET_V6</span><span class="o">=</span><span class="s1">&#39;soc_usr_v6&#39;</span>
+<span class="nv">SOCIAL_FILTER_ID</span><span class="o">=</span><span class="m">3</span>
+
+<span class="c1"># argv[5], contains IPv4-address,</span>
+<span class="c1"># (https://github.com/xebd/accel-ppp/blob/master/accel-pppd/extra/pppd_compat.c).</span>
+<span class="nv">IPV4</span><span class="o">=</span><span class="nv">$5</span>
+
+<span class="c1"># argv[1], contains interface name.</span>
+<span class="nv">RADATTR</span><span class="o">=</span><span class="s1">&#39;/run/radattr.&#39;</span><span class="nv">$1</span>
+
+<span class="c1"># Add|delete client&#39;s IPv4|IPv6 addresses to a specific ipset.</span>
+<span class="c1"># $IPV6_PREFIX and $IPV6_DELEGATED_PREFIX are environment variables of Accel-ppp,</span>
+<span class="c1"># (https://github.com/xebd/accel-ppp/blob/master/accel-pppd/extra/pppd_compat.c).</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="nv">$RADATTR</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="c1"># Get value of &quot;Filter-Id&quot; RADIUS-attribute.</span>
+<span class="w">  </span><span class="nv">FILTER_ID</span><span class="o">=</span><span class="k">$(</span>awk<span class="w"> </span><span class="s1">&#39;/Filter-Id/ {print $2}&#39;</span><span class="w"> </span><span class="nv">$RADATTR</span><span class="k">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$FILTER_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$ACTIVE_FILTER_ID</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$BLOCK_SET_V4</span><span class="w">  </span><span class="nv">$IPV4</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$SOCIAL_SET_V4</span><span class="w"> </span><span class="nv">$IPV4</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$BLOCK_SET_V6</span><span class="w">  </span><span class="nv">$IPV6_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$SOCIAL_SET_V6</span><span class="w"> </span><span class="nv">$IPV6_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$BLOCK_SET_V6</span><span class="w">  </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$SOCIAL_SET_V6</span><span class="w"> </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>logger<span class="w"> </span>-t<span class="w"> </span>ip-change<span class="w"> </span><span class="s2">&quot;Allowed: IPv4 </span><span class="nv">$IPV4</span><span class="s2">, IPv6 </span><span class="nv">$IPV6_PREFIX</span><span class="s2">, IPv6-DP </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$FILTER_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$BLOCK_FILTER_ID</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$SOCIAL_SET_V4</span><span class="w"> </span><span class="nv">$IPV4</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>add<span class="w"> </span><span class="nv">$BLOCK_SET_V4</span><span class="w">  </span><span class="nv">$IPV4</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$SOCIAL_SET_V6</span><span class="w"> </span><span class="nv">$IPV6_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>add<span class="w"> </span><span class="nv">$BLOCK_SET_V6</span><span class="w">  </span><span class="nv">$IPV6_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$SOCIAL_SET_V6</span><span class="w"> </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>add<span class="w"> </span><span class="nv">$BLOCK_SET_V6</span><span class="w">  </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>logger<span class="w"> </span>-t<span class="w"> </span>ip-change<span class="w"> </span><span class="s2">&quot;Blocked: IPv4 </span><span class="nv">$IPV4</span><span class="s2">, IPv6 </span><span class="nv">$IPV6_PREFIX</span><span class="s2">, IPv6-DP </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$FILTER_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$SOCIAL_FILTER_ID</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$BLOCK_SET_V4</span><span class="w">  </span><span class="nv">$IPV4</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>add<span class="w"> </span><span class="nv">$SOCIAL_SET_V4</span><span class="w"> </span><span class="nv">$IPV4</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$BLOCK_SET_V6</span><span class="w">  </span><span class="nv">$IPV6_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>add<span class="w"> </span><span class="nv">$SOCIAL_SET_V6</span><span class="w"> </span><span class="nv">$IPV6_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$BLOCK_SET_V6</span><span class="w">  </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>ipset<span class="w"> </span>add<span class="w"> </span><span class="nv">$SOCIAL_SET_V6</span><span class="w"> </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>logger<span class="w"> </span>-t<span class="w"> </span>ip-change<span class="w"> </span><span class="s2">&quot;Social: IPv4 </span><span class="nv">$IPV4</span><span class="s2">, IPv6 </span><span class="nv">$IPV6_PREFIX</span><span class="s2">, IPv6-DP </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">fi</span>
+<span class="k">else</span>
+<span class="w">  </span>logger<span class="w"> </span>-t<span class="w"> </span>ip-change<span class="w"> </span><span class="s2">&quot;radattr file not found, </span><span class="nv">$CALLED_SID</span><span class="s2"> </span><span class="nv">$CALLING_SID</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p>Example /etc/accel-ppp_ip-down.sh script:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+<span class="c1"># Option &quot;Blocked&quot;.</span>
+<span class="nv">BLOCK_SET_V4</span><span class="o">=</span><span class="s1">&#39;blk_usr_v4&#39;</span>
+<span class="nv">BLOCK_SET_V6</span><span class="o">=</span><span class="s1">&#39;blk_usr_v6&#39;</span>
+
+<span class="c1"># Option &quot;Social&quot;.</span>
+<span class="nv">SOCIAL_SET_V4</span><span class="o">=</span><span class="s1">&#39;soc_usr_v4&#39;</span>
+<span class="nv">SOCIAL_SET_V6</span><span class="o">=</span><span class="s1">&#39;soc_usr_v6&#39;</span>
+
+<span class="c1"># argv[5], contains IPv4-address,</span>
+<span class="c1"># (https://github.com/xebd/accel-ppp/blob/master/accel-pppd/extra/pppd_compat.c).</span>
+<span class="nv">IPV4</span><span class="o">=</span><span class="nv">$5</span>
+
+<span class="c1"># Delete customer&#39;s IPv4|Pv6 addresses from all ipsets,</span>
+<span class="c1"># $IPV6_PREFIX and $IPV6_DELEGATED_PREFIX are environment variables from Accel-ppp,</span>
+<span class="c1"># (https://github.com/xebd/accel-ppp/blob/master/accel-pppd/extra/pppd_compat.c).</span>
+ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$BLOCK_SET_V4</span><span class="w">  </span><span class="nv">$IPV4</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$SOCIAL_SET_V4</span><span class="w"> </span><span class="nv">$IPV4</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$BLOCK_SET_V6</span><span class="w">  </span><span class="nv">$IPV6_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$SOCIAL_SET_V6</span><span class="w"> </span><span class="nv">$IPV6_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$BLOCK_SET_V6</span><span class="w">  </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+ipset<span class="w"> </span>del<span class="w"> </span><span class="nv">$SOCIAL_SET_V6</span><span class="w"> </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="w"> </span>-exist<span class="w"> </span>-quiet<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+logger<span class="w"> </span>-t<span class="w"> </span>ip-change<span class="w"> </span><span class="s2">&quot;Removing from all ipsets: IPv4 </span><span class="nv">$IPV4</span><span class="s2">, IPv6 </span><span class="nv">$IPV6_PREFIX</span><span class="s2">, IPv6-DP </span><span class="nv">$IPV6_DELEGATED_PREFIX</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Example iptables/ipv6tables rules:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>FORWARD<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--match-set<span class="w"> </span>blk_usr_v4<span class="w"> </span>src<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>!<span class="w"> </span>--match-set<span class="w"> </span>blk_res_v4<span class="w"> </span>dst<span class="w"> </span>-j<span class="w"> </span>DROP
+iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>FORWARD<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--match-set<span class="w"> </span>soc_usr_v4<span class="w"> </span>src<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>!<span class="w"> </span>--match-set<span class="w"> </span>soc_res_v4<span class="w"> </span>dst<span class="w"> </span>-j<span class="w"> </span>DROP
+iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>FORWARD<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>!<span class="w"> </span>--match-set<span class="w"> </span>blk_res_v4<span class="w"> </span>src<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--match-set<span class="w"> </span>blk_usr_v4<span class="w"> </span>dst<span class="w"> </span>-j<span class="w"> </span>DROP
+iptables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>FORWARD<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>!<span class="w"> </span>--match-set<span class="w"> </span>soc_res_v4<span class="w"> </span>src<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--match-set<span class="w"> </span>soc_usr_v4<span class="w"> </span>dst<span class="w"> </span>-j<span class="w"> </span>DROP
+
+ip6tables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>FORWARD<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--match-set<span class="w"> </span>blk_usr_v6<span class="w"> </span>src<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>!<span class="w"> </span>--match-set<span class="w"> </span>blk_res_v6<span class="w"> </span>dst<span class="w"> </span>-j<span class="w"> </span>DROP
+ip6tables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>FORWARD<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--match-set<span class="w"> </span>soc_usr_v6<span class="w"> </span>src<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>!<span class="w"> </span>--match-set<span class="w"> </span>soc_res_v6<span class="w"> </span>dst<span class="w"> </span>-j<span class="w"> </span>DROP
+ip6tables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>FORWARD<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>!<span class="w"> </span>--match-set<span class="w"> </span>blk_res_v6<span class="w"> </span>src<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--match-set<span class="w"> </span>blk_usr_v6<span class="w"> </span>dst<span class="w"> </span>-j<span class="w"> </span>DROP
+ip6tables<span class="w"> </span>-t<span class="w"> </span>filter<span class="w"> </span>-A<span class="w"> </span>FORWARD<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>!<span class="w"> </span>--match-set<span class="w"> </span>soc_res_v6<span class="w"> </span>src<span class="w"> </span>-m<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--match-set<span class="w"> </span>soc_usr_v6<span class="w"> </span>dst<span class="w"> </span>-j<span class="w"> </span>DROP
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lua_examples.html" class="btn btn-neutral float-left" title="Lua examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../debugging/index.html" class="btn btn-neutral float-right" title="Debugging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

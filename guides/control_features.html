@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control features &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Recommendations" href="recommendations.html" />
+    <link rel="prev" title="SNMP" href="../configuration/snmp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Control features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#accel-cmd">accel-cmd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#telnet">telnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#radius-coa">radius CoA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#snmp">snmp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recommendations.html">Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BRAS_tuning.html">BRAS tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Control features</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guides/control_features.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="control-features">
+<h1>Control features<a class="headerlink" href="#control-features" title="Link to this heading"></a></h1>
+<p>Accel-ppp support next features for control daemon and sessions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">accel-cmd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">telnet</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snmp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RADIUS</span> <span class="pre">COA</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>Common available commands for <code class="docutils literal notranslate"><span class="pre">accel-cmd</span></code> and <code class="docutils literal notranslate"><span class="pre">telnet</span></code>. Also possible show this help message with one of commands  <code class="docutils literal notranslate"><span class="pre">accel-cmd</span> <span class="pre">help</span></code> and <code class="docutils literal notranslate"><span class="pre">telnet</span> <span class="pre">127.0.0.1</span>&#160; <span class="pre">2000</span></code> then run <code class="docutils literal notranslate"><span class="pre">help</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>show stat - shows various statistics information
+terminate if &lt;interface&gt; [soft|hard]- terminate session by interface name
+        [match] username &lt;username&gt; [soft|hard]- terminate session by username
+        ip &lt;address&gt; [soft|hard]- terminate session by ip address
+        csid &lt;id&gt; [soft|hard]- terminate session by calling station id
+        sid &lt;id&gt; [soft|hard]- terminate session by session id
+        all [soft|hard]- terminate all sessions
+reload - reload config file
+restart [hard] - restart daemon
+                hard - restart immediatly
+                default action - terminate all connections then restart
+shutdown [soft|hard|cancel]- shutdown daemon
+                default action - send termination signals to all clients and wait everybody disconnects
+                soft - wait until all clients disconnects, don&#39;t accept new connections
+                hard - shutdown now, don&#39;t wait anything
+                cancel - cancel &#39;shutdown soft&#39; and return to normal operation
+exit - exit cli
+show sessions [columns] [order &lt;column&gt;] [match &lt;column&gt; &lt;regexp&gt;] - shows sessions
+        columns:
+                netns - network namespace name
+                ifname - interface name
+                username - user name
+                ip - IP address
+                ip6 - IPv6 address
+                ip6-dp - IPv6 delegated prefix
+                type - VPN type
+                state - state of session
+                uptime - uptime (human readable)
+                uptime-raw - uptime (in seconds)
+                calling-sid - calling station id
+                called-sid - called station id
+                sid - session id
+                comp - compression/encryption method
+                rx-bytes - received bytes (human readable)
+                tx-bytes - transmitted bytes (human readable)
+                rx-bytes-raw - received bytes
+                tx-bytes-raw - transmitted bytes
+                rx-pkts - received packets
+                tx-pkts - transmitted packets
+                ipoe-type - IPoE session type
+                rate-limit - rate limit down-stream/up-stream (Kbit)
+pppoe mac-filter reload - reload mac-filter file
+pppoe mac-filter add &lt;address&gt; - add address to mac-filter list
+pppoe mac-filter del &lt;address&gt; - delete address from mac-filter list
+pppoe mac-filter show - show current mac-filter list
+pppoe interface add &lt;name&gt; - start pppoe server on specified interface
+pppoe interface del &lt;name&gt; - stop pppoe server on specified interface and drop his connections
+pppoe interface show - show interfaces on which pppoe server started
+pppoe set verbose &lt;n&gt; - set verbosity of pppoe logging
+pppoe set PADO-delay &lt;delay[,delay1:count1[,delay2:count2[,...]]]&gt; - set PADO delays (ms)
+pppoe set Service-Name &lt;name&gt; - set Service-Name to respond
+pppoe set Service-Name * - respond with client&#39;s Service-Name
+pppoe set AC-Name &lt;name&gt; - set AC-Name tag value
+pppoe show verbose - show current verbose value
+pppoe show PADO-delay - show current PADO delay value
+pppoe show Service-Name - show current Service-Name value
+pppoe show AC-Name - show current AC-Name tag value
+shaper change &lt;interface&gt; &lt;value&gt; [temp] - change shaper on specified interface, if temp is set then previous settings may be restored later by &#39;shaper restore&#39;
+shaper change all &lt;value&gt; [temp] - change shaper on all interfaces, if temp is set also new interfaces will have specified shaper value
+shaper restore &lt;interface&gt; - restores shaper settings on specified interface made by &#39;shaper change&#39; command with &#39;temp&#39; flag
+shaper restore all - restores shaper settings on all interfaces made by &#39;shaper change&#39; command with &#39;temp&#39; flag
+</pre></div>
+</div>
+<section id="accel-cmd">
+<h2>accel-cmd<a class="headerlink" href="#accel-cmd" title="Link to this heading"></a></h2>
+<p>This application is very powerful and often used if you have <cite>cli</cite> connection. Be default accel-ppp listen <em>TCP</em> port <em>2000</em>  for input/output with accel-cmd. However <cite>telnet</cite> has same functions, but <cite>accel-cmd</cite> is more comfortable, allow send command without enter in to another environment. Detail about cli you may read at <a class="reference internal" href="../configuration/cli.html#cli-configuration"><span class="std std-ref">[cli]</span></a> .Let’s revise <cite>accel-cmd</cite> possible commands.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>accel-cmd show stat</cite> - one of more important command, allow display  <em>accel-ppp</em> daemon statistics and information about connections types and something counters such as RADIUS auth, acct summary and lost queries. Detail below:</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="telnet">
+<h2>telnet<a class="headerlink" href="#telnet" title="Link to this heading"></a></h2>
+</section>
+<section id="radius-coa">
+<h2>radius CoA<a class="headerlink" href="#radius-coa" title="Link to this heading"></a></h2>
+<p>Example, terminate session by username: <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">User-Name=username</span> <span class="pre">|</span> <span class="pre">radclient</span> <span class="pre">-x</span> <span class="pre">127.0.0.1:3799</span> <span class="pre">disconnect</span> <span class="pre">testing123</span></code>.</p>
+</section>
+<section id="snmp">
+<h2>snmp<a class="headerlink" href="#snmp" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../configuration/snmp.html" class="btn btn-neutral float-left" title="SNMP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="recommendations.html" class="btn btn-neutral float-right" title="Recommendations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

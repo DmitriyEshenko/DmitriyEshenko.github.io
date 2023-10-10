@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Debugging" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/control_features.html">Control features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/recommendations.html">Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/BRAS_tuning.html">BRAS tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Debugging</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#htb-quantum-of-class-is-big">HTB: quantum of class is big</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-rotate-logs">How to rotate logs ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i-don-t-see-pppd-processes-how-to-manually-terminate-session">I don’t see pppd processes, how to manually terminate session ?</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">FAQ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/debugging/faq.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="faq">
+<h1>FAQ<a class="headerlink" href="#faq" title="Link to this heading"></a></h1>
+<section id="htb-quantum-of-class-is-big">
+<h2>HTB: quantum of class is big<a class="headerlink" href="#htb-quantum-of-class-is-big" title="Link to this heading"></a></h2>
+<p>When an error appears in the logs:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>HTB:<span class="w"> </span>quantum<span class="w"> </span>of<span class="w"> </span>class<span class="w"> </span><span class="m">10001</span><span class="w"> </span>is<span class="w"> </span>big.<span class="w"> </span>Consider<span class="w"> </span>r2q<span class="w"> </span>change.
+</pre></div>
+</div>
+<p>You need to set a parameter for the shaper:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#accel-pp will calculate the value itself</span>
+moderate-quantum<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="how-to-rotate-logs">
+<h2>How to rotate logs ?<a class="headerlink" href="#how-to-rotate-logs" title="Link to this heading"></a></h2>
+<p>You can use system logrotate utility for it. Put following file to /etc/logrotate.d</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>/var/log/accel-ppp/*.log<span class="w"> </span><span class="o">{</span>
+<span class="w">      </span>missingok
+<span class="w">      </span>sharedscripts
+<span class="w">      </span>postrotate
+<span class="w">              </span><span class="nb">test</span><span class="w"> </span>-r<span class="w"> </span>/var/run/accel-pppd.pid<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-HUP<span class="w"> </span><span class="sb">`</span>cat<span class="w"> </span>/var/run/accel-pppd.pid<span class="sb">`</span>
+<span class="w">      </span>endscript
+<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="i-don-t-see-pppd-processes-how-to-manually-terminate-session">
+<h2>I don’t see pppd processes, how to manually terminate session ?<a class="headerlink" href="#i-don-t-see-pppd-processes-how-to-manually-terminate-session" title="Link to this heading"></a></h2>
+<p>Yes, in fact accel-ppp doesn’t use pppd because it has its own ppp implementation.
+To terminate session you may use three methods:</p>
+<ol class="arabic simple">
+<li><p>Use cli (telnet or tcp):</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>By<span class="w"> </span>default<span class="w"> </span>telnet<span class="w"> </span>listens<span class="w"> </span>connections<span class="w"> </span>on<span class="w"> </span><span class="m">2000</span><span class="w"> </span>port<span class="w"> </span>and<span class="w"> </span>tcp<span class="w"> </span>on<span class="w"> </span><span class="m">2001</span><span class="w"> </span>port.
+$<span class="w"> </span>telnet<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span><span class="m">2000</span>
+Trying<span class="w"> </span><span class="m">127</span>.0.0.1...
+Connected<span class="w"> </span>to<span class="w"> </span><span class="m">127</span>.0.0.1.
+Escape<span class="w"> </span>character<span class="w"> </span>is<span class="w"> </span><span class="s1">&#39;^]&#39;</span>.
+accel-ppp<span class="w"> </span>version<span class="w"> </span><span class="m">1</span>.5.0
+accel-ppp#<span class="w"> </span>terminate<span class="w"> </span><span class="k">if</span><span class="w"> </span>ppp0
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;terminate if ppp0&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>nc<span class="w"> </span>-q0<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span><span class="m">2001</span>
+</pre></div>
+</div>
+<p>There are also other criterias to select session(s), use help cli command to get more information.</p>
+<ol class="arabic simple" start="2">
+<li><p>Use radius Disconnect-Message:</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;NAS-Port=0&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>radclient<span class="w"> </span><span class="m">127</span>.0.0.1:3799<span class="w"> </span>disconnect<span class="w"> </span>testing123
+Received<span class="w"> </span>response<span class="w"> </span>ID<span class="w"> </span><span class="m">170</span>,<span class="w"> </span>code<span class="w"> </span><span class="m">41</span>,<span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
+</pre></div>
+</div>
+<p>and you can control it in logs:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">2012</span>-01-21<span class="p">|</span><span class="m">16</span>:48:55<span class="o">]</span>:<span class="w">  </span>info:<span class="w"> </span>ppp0:<span class="w"> </span>recv<span class="w"> </span><span class="o">[</span>RADIUS<span class="p">|</span>Disconnect-Request<span class="w"> </span><span class="nv">id</span><span class="o">=</span>aa<span class="w"> </span>&lt;NAS-Port<span class="w"> </span><span class="m">0</span>&gt;<span class="o">]</span>
+<span class="o">[</span><span class="m">2012</span>-01-21<span class="p">|</span><span class="m">16</span>:48:55<span class="o">]</span>:<span class="w">  </span>info:<span class="w"> </span>ppp0:<span class="w"> </span>send<span class="w"> </span><span class="o">[</span>RADIUS<span class="p">|</span>Disconnect-ACK<span class="w"> </span><span class="nv">id</span><span class="o">=</span>aa<span class="o">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Use snmp:</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>snmpset<span class="w"> </span>-m<span class="w"> </span>+ACCEL-PPP-MIB<span class="w"> </span>-v<span class="w"> </span>2c<span class="w"> </span>-c<span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>ACCEL-PPP-MIB::termByIfName.0<span class="w"> </span><span class="o">=</span><span class="w"> </span>ppp0
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Debugging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

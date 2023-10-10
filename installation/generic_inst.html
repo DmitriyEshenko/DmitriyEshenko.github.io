@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generic Installation &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Install on Debian" href="debian.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="install.html">Installation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Generic Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirment">Requirment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compilation-and-instalation">Compilation and instalation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run">Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control">Control</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="debian.html">Install on Debian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubuntu.html">Install on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="centos.html">Install on Centos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/control_features.html">Control features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/recommendations.html">Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/BRAS_tuning.html">BRAS tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="install.html">Installation</a></li>
+      <li class="breadcrumb-item active">Generic Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/installation/generic_inst.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="generic-installation">
+<h1>Generic Installation<a class="headerlink" href="#generic-installation" title="Link to this heading"></a></h1>
+<section id="requirment">
+<h2>Requirment<a class="headerlink" href="#requirment" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>modern linux distribution</p></li>
+<li><p>kernel-2.6.25 or later</p></li>
+<li><p>cmake-2.6 or later</p></li>
+<li><p>libnl-2.0 or probably later (optional, required for builtin shaper)</p></li>
+<li><p>libcrypto-0.9.8 or probably later (openssl-0.9.8)</p></li>
+<li><p>libpcre</p></li>
+<li><p>net-snmp-5.x (optional, required for snmp)</p></li>
+<li><p>libssl-0.9.8 or probably later (openssl-0.9.8)</p></li>
+<li><p>liblua5.1 probably later (optional, required for create username fundamental on packet header information)</p></li>
+</ul>
+</section>
+<section id="compilation-and-instalation">
+<h2>Compilation and instalation<a class="headerlink" href="#compilation-and-instalation" title="Link to this heading"></a></h2>
+<p>Make sure you have configured kernel headers in /usr/src/linux, or specify other location via KDIR.</p>
+<p>Download accel-ppp source code with git client, tree master . Master tree contain actual patches last release.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/accel-ppp/accel-ppp.git<span class="w"> </span>accel-ppp-code
+</pre></div>
+</div>
+<p>Create directory for build source code and go to this directory.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>/opt/accel-ppp-code/build
+<span class="nb">cd</span><span class="w"> </span>/opt/accel-ppp-code/build/
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span><span class="o">[</span>-DBUILD_DRIVER<span class="o">=</span>FALSE<span class="o">]</span><span class="w"> </span><span class="o">[</span>-DKDIR<span class="o">=</span>/usr/src/linux<span class="o">]</span><span class="w"> </span><span class="o">[</span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr/local<span class="o">]</span><span class="w"> </span><span class="o">[</span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="o">]</span><span class="w"> </span><span class="o">[</span>-DLOG_PGSQL<span class="o">=</span>FALSE<span class="o">]</span><span class="w"> </span><span class="o">[</span>-DSHAPER<span class="o">=</span>FALSE<span class="o">]</span><span class="w"> </span><span class="o">[</span>-DRADIUS<span class="o">=</span>TRUE<span class="o">]</span><span class="w"> </span><span class="o">[</span>-DNETSNMP<span class="o">=</span>FALSE<span class="o">]</span><span class="w"> </span>..
+</pre></div>
+</div>
+<div class="admonition-notice admonition">
+<p class="admonition-title">Notice:</p>
+<p>Please note that the double dot record in the end of the command is essential.
+You’ll probably get error or misconfigured sources if you miss it.</p>
+</div>
+<p>BUILD_DRIVER, KDIR, CMAKE_INSTALL_PREFIX, CMAKE_BUILD_TYPE, LOG_PGSQL, SHAPER, RADIUS are optional,
+but while pptp is not present in mainline kernel you probably need BUILD_DRIVER.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make
+make<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+<section id="run">
+<h2>Run<a class="headerlink" href="#run" title="Link to this heading"></a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>accel-pppd<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span>/var/run/accel-ppp.pid<span class="w"> </span>-c<span class="w"> </span>/etc/accel-ppp.conf
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>usage:<span class="w"> </span>accel-pppd<span class="w"> </span><span class="o">[</span>-d<span class="o">]</span><span class="w"> </span><span class="o">[</span>-p<span class="w"> </span>&lt;file&gt;<span class="o">]</span><span class="w"> </span>-c<span class="w"> </span>&lt;file&gt;
+<span class="w">      </span>where:
+<span class="w">              </span>-d<span class="w"> </span>-<span class="w"> </span>daemon<span class="w"> </span>mode
+<span class="w">              </span>-p<span class="w"> </span>-<span class="w"> </span>write<span class="w"> </span>pid<span class="w"> </span>to<span class="w"> </span>&lt;file&gt;
+<span class="w">              </span>-c<span class="w"> </span>-<span class="w"> </span>config<span class="w"> </span>file
+</pre></div>
+</div>
+</section>
+<section id="control">
+<h2>Control<a class="headerlink" href="#control" title="Link to this heading"></a></h2>
+<p>Accel-ppp support next features for control daemon and sessions</p>
+<ul class="simple">
+<li><p><strong>accel-cmd</strong></p></li>
+<li><p><strong>telnet</strong></p></li>
+<li><p><strong>radius CoA</strong></p></li>
+<li><p><strong>snmp</strong></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="debian.html" class="btn btn-neutral float-right" title="Install on Debian" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

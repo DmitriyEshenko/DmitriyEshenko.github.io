@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[pppoe] &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="[pptp]" href="pptp.html" />
+    <link rel="prev" title="[ppp]" href="ppp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="configuration.html">Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="modules.html">[modules]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">[core]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">[common]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="radius.html">[radius]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap_secrets.html">[chap-secrets]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ppp.html">[ppp]</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">[pppoe]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pptp.html">[pptp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2tp.html">[l2tp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipoe.html">[ipoe]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip-pool.html">[ip-pool]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sstp.html">[sstp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dns.html">[dns]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-dns.html">[ipv6-dns]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-pool.html">[ipv6-pool]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-nd.html">[ipv6-nd]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-dhcp.html">[ipv6-dhcp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shaper.html">[shaper]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log.html">[log]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">[cli]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pppd_compat.html">[pppd-compat]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snmp.html">SNMP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/control_features.html">Control features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/recommendations.html">Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/BRAS_tuning.html">BRAS tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="configuration.html">Configuration</a></li>
+      <li class="breadcrumb-item active">[pppoe]</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/configuration/pppoe.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pppoe">
+<h1>[pppoe]<a class="headerlink" href="#pppoe" title="Link to this heading"></a></h1>
+<p>Configuration of PPPoE module.</p>
+<dl>
+<dt><strong>verbose=0|1</strong></dt><dd><p>By default is disabled.</p>
+<p>Specified will pppoe module produce verbose logging.</p>
+</dd>
+<dt><strong>padi-limit=n</strong></dt><dd><p>By default is unlimited <code class="docutils literal notranslate"><span class="pre">padi-limit=0</span></code></p>
+<p>Specifies overall limit of PADI packets to reply in 1 second period. Rate of per-mac PADI packets is limited to no more than 1 packet per second. May also used as per-interface param.</p>
+</dd>
+<dt><strong>interface=[re:]ifname[,padi-limit=n]</strong></dt><dd><p>By default is defined. Important to set this option.</p>
+<p>Specifies interface name to listen/send discovery packets. May be specify multiple interface options. If <em>ifname</em> is prefixed with <code class="docutils literal notranslate"><span class="pre">re:</span></code> then <em>ifname</em> is considered as regular expression. Optional padi-limit parameter specifies limit of PADI packets to reply on this interface in 1 second period.</p>
+</dd>
+<dt><strong>ac-name=ac-name</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">ac-name=accel-ppp</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Need</span> <span class="pre">fix:</span> <span class="pre">ìmportant</span> <span class="pre">check</span> <span class="pre">it</span></code> Specifies AC-Name tag value. If absent tag will not be sent.</p>
+</dd>
+<dt><strong>service-name=service-name1,service-nameN</strong></dt><dd><p>By default is not defined.</p>
+<p>Specifies Service-Name to respond. If absent any Service-Name is acceptable and client’s Service-Name will be sent back.
+Also possible set multiple service-names: <code class="docutils literal notranslate"><span class="pre">service-name=sn1,sn2,sn3</span></code></p>
+</dd>
+<dt><strong>accept-any-service=n</strong></dt><dd><p>By default is disabled.</p>
+<p>If service-name specified still will answer with service names, but accepts any service name in PADR request. Useful for scenarios, where selection of PPPoE done by client, based on service names in PADO.</p>
+</dd>
+<dt><strong>pado-delay=delay[,delay1:count1[,delay2:count2[,…]]]</strong></dt><dd><p>By default is disabled.</p>
+<p>Specifies delays (also in condition of connection count) to send PADO (ms). Last delay in list may be -1 which means don’t accept new connections. List have to be sorted by count key.</p>
+</dd>
+<dt><strong>called-sid=ifname|mac|ifname:mac</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">called-sid=mac</span></code></p>
+<p>Specifies how to represent Called-Station-ID.</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ifname</span></code> - Called-Station-ID will contain name of interface accepted request.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac</span></code> - Called-Station-ID will contain mac address of interface accepted request.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ifname:mac</span></code> - Called-Station-Id will contain both name and mac of interface.</p></li>
+</ul>
+<dl>
+<dt><strong>tr101=0|1</strong></dt><dd><p>By default is enabled <code class="docutils literal notranslate"><span class="pre">tr101=1</span></code></p>
+<p>Specifies whether to handle TR101 tags.</p>
+</dd>
+<dt><strong>mppe=deny|allow|prefer|require</strong></dt><dd><p>By default is not defined.</p>
+<p>Default behavior - don’t ask client for mppe, but allow it if client wants.</p>
+</dd>
+<dt><strong>ifname=ifname</strong></dt><dd><p>By default is not defined.</p>
+<p>If this option is given ppp interface will be renamed using ifname as a template, i.e <code class="docutils literal notranslate"><span class="pre">ifname=pppoe%d</span></code> =&gt; <em>pppoe0</em>.</p>
+</dd>
+</dl>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<p>Also interface may renamed if RADIUS server send attribute <code class="docutils literal notranslate"><span class="pre">NAS-Port-Id</span></code> with custom name. Length this value not be more 16 characters.</p>
+</div>
+<dl>
+<dt><strong>ifname-in-sid=called-sid|calling-sid|both</strong></dt><dd><p>By default is not defined.</p>
+<p>Specifies that interface name should be present in Called-Station-ID or in Calling-Station-ID or in both attributes.</p>
+</dd>
+<dt><strong>sid-uppercase=0|1</strong></dt><dd><p>By default is lowercase <code class="docutils literal notranslate"><span class="pre">sid-uppercase=0`</span></code></p>
+<p>Specifies in which case sen attribute <code class="docutils literal notranslate"><span class="pre">Called-Station-ID</span></code> and <code class="docutils literal notranslate"><span class="pre">Calling-Station-ID</span></code>.</p>
+<p>Example: lowercase <code class="docutils literal notranslate"><span class="pre">Calling-Station-Id</span> <span class="pre">&quot;xx:xx:xx:xx:xx:xx&quot;</span></code>, uppercase <code class="docutils literal notranslate"><span class="pre">Calling-Station-Id</span> <span class="pre">&quot;XX:XX:XX:XX:XX:XX&quot;</span></code></p>
+</dd>
+<dt><strong>cookie-timeout=n</strong></dt><dd><p>By default <code class="docutils literal notranslate"><span class="pre">cookie-timeout=5</span></code></p>
+</dd>
+<dt><strong>ip-pool=pool_name</strong></dt><dd><p>By default is not defined.</p>
+<p>Specifies ip pool name which accel-ppp will use for allocate client ip address.</p>
+</dd>
+</dl>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<p>For use ippool need add this module to <code class="docutils literal notranslate"><span class="pre">[modules]</span></code> section, and sets params on section <code class="docutils literal notranslate"><span class="pre">[ip-pool]</span></code></p>
+</div>
+<dl>
+<dt><strong>ipv6-pool=pool_name</strong></dt><dd><p>By default is not defined.</p>
+<p>Specifies ipv6 pool name which accel-ppp will use for allocate client ipv6 prefix.</p>
+</dd>
+<dt><strong>ipv6-pool-delegate=pool_name</strong></dt><dd><p>By default is not defined.</p>
+<p>Specifies ipv6 prefix delegation pool name which accel-ppp will use for allocate client ipv6 prefix delegation.</p>
+</dd>
+<dt><strong>vlan-mon=[re:]name[,filter]</strong></dt><dd><p>vlan-mon needs for automatically crate vlans interfaces. Support regular expression (re:). Parameter specifies list of vlans or ranges of vlans to monitor for and may be in following form: <code class="docutils literal notranslate"><span class="pre">vlan-mon=eth1,2,5,10,20-30</span></code></p>
+</dd>
+<dt><strong>vlan-timeout=n</strong></dt><dd><p>By default: <code class="docutils literal notranslate"><span class="pre">vlan-timeout=60</span></code>.</p>
+<p>Specifies time on second of vlan inactivity before it will be removed.</p>
+</dd>
+<dt><strong>vlan-name=pattern</strong></dt><dd><p>By default vlan-name=%I.%N</p>
+<p>Specifies pattern of vlan interface name. Pattern may contain following macros:</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%I</span></code> - name of pattern interface.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%N</span></code> - number of vlan.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%P</span></code> - number of vlan of parent interface.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ppp.html" class="btn btn-neutral float-left" title="[ppp]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pptp.html" class="btn btn-neutral float-right" title="[pptp]" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

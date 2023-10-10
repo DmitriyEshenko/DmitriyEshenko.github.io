@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BRAS tuning &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RADIUS and DM/CoA features" href="radius_features.html" />
+    <link rel="prev" title="Recommendations" href="recommendations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="control_features.html">Control features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recommendations.html">Recommendations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BRAS tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#network-tuning">Network tuning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#disable-kernel-mitigations-to-maximize-performance">Disable kernel mitigations to maximize performance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#disable-nic-offloads">Disable NIC offloads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fix-download-speed-problem-shaper">Fix Download speed problem (shaper)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-rate-limits-shaper">Default rate limits (shaper)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-pppoe-mtu">Change PPPoE MTU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hotplug-optimization">Hotplug optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#systemd-udev-optimizations">SYSTEMD-UDEV optimizations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">BRAS tuning</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guides/BRAS_tuning.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bras-tuning">
+<h1>BRAS tuning<a class="headerlink" href="#bras-tuning" title="Link to this heading"></a></h1>
+<p>Recommendations for BRAS (Broadband Remote Access Server) performance.</p>
+<section id="network-tuning">
+<h2>Network tuning<a class="headerlink" href="#network-tuning" title="Link to this heading"></a></h2>
+<section id="disable-kernel-mitigations-to-maximize-performance">
+<h3>Disable kernel mitigations to maximize performance<a class="headerlink" href="#disable-kernel-mitigations-to-maximize-performance" title="Link to this heading"></a></h3>
+<p>Edit file <code class="docutils literal notranslate"><span class="pre">/etc/default/grub</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&quot;intel_idle.max_cstate=0 processor.max_cstate=1 idle=poll quiet mitigations=off&quot;</span>
+</pre></div>
+</div>
+<p>Additional GRUB CMD arguments:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ixgbe.allow_unsupported_sfp=1 - Allow to use not original Intel SFP+ modules</p></li>
+<li><p>pcie_aspm=off - Disable Active-State Power Management</p></li>
+</ul>
+</div></blockquote>
+<p>After saving, please update grub settings</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$sudo</span><span class="w"> </span>update-grub
+</pre></div>
+</div>
+<p>Warning! Enabling the idle loop  (<code class="docutils literal notranslate"><span class="pre">idle=poll</span></code>) parameter can cause 100% CPU utilization on your VM (if you’re using virtual enviroments like ProxMox, VMWare, etc.)</p>
+</section>
+<section id="disable-nic-offloads">
+<h3>Disable NIC offloads<a class="headerlink" href="#disable-nic-offloads" title="Link to this heading"></a></h3>
+<p>Disable hardware offloads,increase Tx/Rx buffers and queue length on your NICs to prevent speed problems.
+Please note, that GSO offload changed to tx-gso-partial in Linux kernels 4.15 and later.</p>
+<p>Debian <code class="docutils literal notranslate"><span class="pre">/etc/network/interfaces</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>allow-hotplug<span class="w"> </span>eth0
+iface<span class="w"> </span>eth0<span class="w"> </span>inet<span class="w"> </span>manual
+<span class="w">    </span>up<span class="w"> </span>ethtool<span class="w"> </span>-K<span class="w"> </span>eth0<span class="w"> </span>tso<span class="w"> </span>off<span class="w"> </span>gso<span class="w"> </span>off<span class="w"> </span>gro<span class="w"> </span>off<span class="w"> </span>rxvlan<span class="w"> </span>off<span class="w"> </span>txvlan<span class="w"> </span>off<span class="w"> </span>rx-vlan-filter<span class="w"> </span>off<span class="w"> </span>ntuple<span class="w"> </span>on<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>up<span class="w"> </span>ethtool<span class="w"> </span>-K<span class="w"> </span>eth0<span class="w"> </span>tx-gso-partial<span class="w"> </span>off<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>up<span class="w"> </span>ethtool<span class="w"> </span>-G<span class="w"> </span>eth0<span class="w"> </span>rx<span class="w"> </span><span class="m">4096</span><span class="w"> </span>tx<span class="w"> </span><span class="m">4096</span><span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="w">    </span>up<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>eth0<span class="w"> </span>txqueuelen<span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+</pre></div>
+</div>
+<p>Please determine your NIC queue and buffers limit before increase:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ethtool<span class="w"> </span>-g<span class="w"> </span>eth0
+</pre></div>
+</div>
+</section>
+<section id="fix-download-speed-problem-shaper">
+<h3>Fix Download speed problem (shaper)<a class="headerlink" href="#fix-download-speed-problem-shaper" title="Link to this heading"></a></h3>
+<p>Change shaper from htb to tbf</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>shaper<span class="o">]</span>
+…
+down-limiter<span class="o">=</span>tbf
+</pre></div>
+</div>
+</section>
+<section id="default-rate-limits-shaper">
+<h3>Default rate limits (shaper)<a class="headerlink" href="#default-rate-limits-shaper" title="Link to this heading"></a></h3>
+<p>If radius-server Access-Accept answer has no compatible speed attributes - to prevent unlimited session speed you can add default rate-limits (in Kbps).</p>
+<p><code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/accel-ppp.conf</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>shaper<span class="o">]</span>
+rate-limit<span class="o">=</span><span class="m">888</span>/888
+</pre></div>
+</div>
+</section>
+<section id="change-pppoe-mtu">
+<h3>Change PPPoE MTU<a class="headerlink" href="#change-pppoe-mtu" title="Link to this heading"></a></h3>
+<p>You can adjust allowed PPPoE min/max MTU/MRU settings:
+<code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/accel-ppp.conf</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>ppp<span class="o">]</span>
+<span class="nv">verbose</span><span class="o">=</span><span class="m">1</span>
+min-mtu<span class="o">=</span><span class="m">1280</span>
+<span class="nv">mtu</span><span class="o">=</span><span class="m">1492</span>
+<span class="nv">mru</span><span class="o">=</span><span class="m">1492</span>
+</pre></div>
+</div>
+</section>
+<section id="hotplug-optimization">
+<h3>Hotplug optimization<a class="headerlink" href="#hotplug-optimization" title="Link to this heading"></a></h3>
+<p>To generate hotplug events on IPoE interfaces (Debian 10):</p>
+<p><code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/lib/udev/ifupdown-hotplug</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ACTION</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+add<span class="o">)</span>
+<span class="c1"># these interfaces generate hotplug events *after* they are brought up</span>
+<span class="k">case</span><span class="w"> </span><span class="nv">$INTERFACE</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span>ppp*<span class="p">|</span>ippp*<span class="p">|</span>isdn*<span class="p">|</span>plip*<span class="p">|</span>lo<span class="p">|</span>irda*<span class="p">|</span>ipsec*
+</pre></div>
+</div>
+<p>just add <code class="docutils literal notranslate"><span class="pre">|ipoe*</span></code> after <code class="docutils literal notranslate"><span class="pre">|ipsec*</span></code></p>
+<p>repeat with file <code class="docutils literal notranslate"><span class="pre">/lib/udev/net.agent</span></code></p>
+</section>
+<section id="systemd-udev-optimizations">
+<h3>SYSTEMD-UDEV optimizations<a class="headerlink" href="#systemd-udev-optimizations" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Delete <code class="docutils literal notranslate"><span class="pre">99-default.link</span></code> from <code class="docutils literal notranslate"><span class="pre">/lib/systemd/network/</span></code> directory</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>/lib/systemd/network/99-default.link
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">/lib/udev/rules.d/99-systemd.rules</span></code></p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">ACTION</span><span class="o">==</span><span class="s2">&quot;add&quot;</span>,<span class="w"> </span><span class="nv">SUBSYSTEM</span><span class="o">==</span><span class="s2">&quot;net&quot;</span>,<span class="w"> </span>KERNEL!<span class="o">=</span><span class="s2">&quot;lo|ppp*|ipoe*&quot;</span>,<span class="w"> </span><span class="nv">RUN</span><span class="o">+=</span><span class="s2">&quot;/lib/systemd/systemd-sysctl --prefix=/net/ipv4/conf/</span><span class="nv">$name</span><span class="s2"> --prefix=/net/ipv4/neigh/</span><span class="nv">$name</span><span class="s2"> --prefix=/net/ipv6/conf/</span><span class="nv">$name</span><span class="s2"> --prefix=/net/ipv6/neigh/</span><span class="nv">$name</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Add <code class="docutils literal notranslate"><span class="pre">|ppp*|ipoe*</span></code> to <code class="docutils literal notranslate"><span class="pre">KERNEL!=&quot;lo&quot;</span></code></p>
+<ol class="arabic simple" start="3">
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">/lib/udev/rules.d/80-ifupdown.rules</span></code></p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">SUBSYSTEM</span><span class="o">==</span><span class="s2">&quot;net&quot;</span>,<span class="w"> </span><span class="nv">ACTION</span><span class="o">==</span><span class="s2">&quot;add|remove&quot;</span>,<span class="w"> </span>KERNEL!<span class="o">=</span><span class="s2">&quot;ppp*|ipoe*&quot;</span>,<span class="w"> </span><span class="nv">RUN</span><span class="o">+=</span><span class="s2">&quot;ifupdown-hotplug&quot;</span>
+</pre></div>
+</div>
+<p>Add <code class="docutils literal notranslate"><span class="pre">KERNEL!=&quot;ppp*|ipoe*&quot;</span></code></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="recommendations.html" class="btn btn-neutral float-left" title="Recommendations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="radius_features.html" class="btn btn-neutral float-right" title="RADIUS and DM/CoA features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

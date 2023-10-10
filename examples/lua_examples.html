@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lua examples &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pppd-compat examples" href="pppd_compat_examples.html" />
+    <link rel="prev" title="Examples" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/control_features.html">Control features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/recommendations.html">Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/BRAS_tuning.html">BRAS tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="examples.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lua examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pppd_compat_examples.html">pppd-compat examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="examples.html">Examples</a></li>
+      <li class="breadcrumb-item active">Lua examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/lua_examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lua-examples">
+<span id="id1"></span><h1>Lua examples<a class="headerlink" href="#lua-examples" title="Link to this heading"></a></h1>
+<p>Important that accel-ppp was built with lua support <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-DLUA=TRUE</span></code> or if system has more modern lua version, need this sets, for example <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-DLUA=5.3</span></code></p>
+<p>Example accel-ppp configuration:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>ipoe<span class="o">]</span>
+<span class="w">  </span>lua-file<span class="o">=</span>/etc/accel-ppp.lua
+<span class="w">  </span><span class="nv">username</span><span class="o">=</span>lua:username_func
+</pre></div>
+</div>
+<p>Create /etc/accel-ppp.lua and edit. Example for D-link switches with Option 82:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!lua</span>
+<span class="w">  </span><span class="k">function</span><span class="w"> </span>username_func<span class="o">(</span>pkt<span class="o">)</span>
+<span class="w">    </span>v,b1,b2,b3,b4<span class="o">=</span>string.unpack<span class="o">(</span>pkt:agent_remote_id<span class="o">()</span>:sub<span class="o">(</span>-4<span class="o">)</span>,<span class="s1">&#39;bbbb&#39;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">ip</span><span class="o">=</span>b1..<span class="s1">&#39;.&#39;</span>..b2..<span class="s1">&#39;.&#39;</span>..b3..<span class="s1">&#39;.&#39;</span>..b4
+<span class="w">    </span>v,port<span class="o">=</span>string.unpack<span class="o">(</span>string.sub<span class="o">(</span>pkt:agent_circuit_id<span class="o">()</span>,<span class="s1">&#39;-1&#39;</span><span class="o">)</span>,<span class="s1">&#39;b&#39;</span><span class="o">)</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">username</span><span class="o">=</span>ip..<span class="s1">&#39;-&#39;</span>..port
+--<span class="w">  </span>print<span class="o">(</span>username<span class="o">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>username
+end
+</pre></div>
+</div>
+<p>Object <strong>pkt</strong> has next functions:</p>
+<dl class="simple">
+<dt><strong>hdr(name)</strong></dt><dd><p>Will return value which contained in DHCP packet header. <code class="docutils literal notranslate"><span class="pre">name</span></code> may receive next params: <code class="docutils literal notranslate"><span class="pre">xid</span></code>, <code class="docutils literal notranslate"><span class="pre">ciaddr</span></code>, <code class="docutils literal notranslate"><span class="pre">giaddr</span></code>, <code class="docutils literal notranslate"><span class="pre">chaddr</span></code>.</p>
+</dd>
+<dt><strong>ifname()</strong></dt><dd><p>Will return interface name which received packet.</p>
+</dd>
+<dt><strong>ipaddr()</strong></dt><dd><p>Will return client ip address exist in packet header.</p>
+</dd>
+<dt><strong>hwaddr()</strong></dt><dd><p>Will return client MAC address.</p>
+</dd>
+<dt><strong>vlan()</strong></dt><dd><p>Will return client VLAN.</p>
+</dd>
+</dl>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">local</span><span class="w"> </span><span class="nv">vlan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>pkt:vlan<span class="o">()</span>
+<span class="nb">local</span><span class="w"> </span><span class="nv">svid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>bit.rshift<span class="o">(</span>vlan,16<span class="o">)</span>
+<span class="nb">local</span><span class="w"> </span><span class="nv">cvid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>bit.band<span class="o">(</span>vlan,0xffff<span class="o">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>options()</strong></dt><dd><p>Will return table which contains number of DHCP option in received packet.</p>
+</dd>
+<dt><strong>option(num)</strong></dt><dd><p>Will return value with option number <code class="docutils literal notranslate"><span class="pre">num</span></code>.</p>
+</dd>
+<dt><strong>agent_circuit_id()</strong></dt><dd><p>Will return <code class="docutils literal notranslate"><span class="pre">agent_circuit_id</span></code> option 82.</p>
+</dd>
+<dt><strong>agent_remote_id()</strong></dt><dd><p>Will return <code class="docutils literal notranslate"><span class="pre">agent_remote_id</span></code> option 82.</p>
+</dd>
+</dl>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<p>All function return type <code class="docutils literal notranslate"><span class="pre">string</span></code>, except for <code class="docutils literal notranslate"><span class="pre">options()</span></code></p>
+</div>
+<p>Also to accel-ppp includes packet <strong>lpack</strong> for disassemble binary data.
+It add to object <code class="docutils literal notranslate"><span class="pre">string</span></code> additional function <code class="docutils literal notranslate"><span class="pre">unpack(binary,</span> <span class="pre">fmt)</span></code>, where <code class="docutils literal notranslate"><span class="pre">binary</span></code> is string which contain binary data, and <code class="docutils literal notranslate"><span class="pre">fmt</span></code> is data format. To <code class="docutils literal notranslate"><span class="pre">fmt</span></code> may be sets next data types:</p>
+<p><strong>z</strong> - zero terminated string</p>
+<p><strong>p</strong> - string precended by length byte</p>
+<p><strong>P</strong> - string precended by length word</p>
+<p><strong>f</strong> - float</p>
+<p><strong>d</strong> - double</p>
+<p><strong>c</strong> - int8_t</p>
+<p><strong>b</strong> - uint8_t</p>
+<p><strong>h</strong> - int16_t</p>
+<p><strong>H</strong> - uint16_t</p>
+<p><strong>i</strong> - int32_t</p>
+<p><strong>I</strong> - uint32_t</p>
+<p><strong>l</strong> - int64_t</p>
+<p><strong>L</strong> - uint64_t</p>
+<p><strong>&lt;</strong> - little endian</p>
+<p><strong>&gt;</strong> - big endian</p>
+<p><strong>=</strong> - native endian</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pppd_compat_examples.html" class="btn btn-neutral float-right" title="pppd-compat examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[ppp] &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="[pppoe]" href="pppoe.html" />
+    <link rel="prev" title="[chap-secrets]" href="chap_secrets.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="configuration.html">Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="modules.html">[modules]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">[core]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">[common]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="radius.html">[radius]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap_secrets.html">[chap-secrets]</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">[ppp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pppoe.html">[pppoe]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pptp.html">[pptp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2tp.html">[l2tp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipoe.html">[ipoe]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip-pool.html">[ip-pool]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sstp.html">[sstp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dns.html">[dns]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-dns.html">[ipv6-dns]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-pool.html">[ipv6-pool]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-nd.html">[ipv6-nd]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipv6-dhcp.html">[ipv6-dhcp]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shaper.html">[shaper]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log.html">[log]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">[cli]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pppd_compat.html">[pppd-compat]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snmp.html">SNMP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/control_features.html">Control features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/recommendations.html">Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/BRAS_tuning.html">BRAS tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="configuration.html">Configuration</a></li>
+      <li class="breadcrumb-item active">[ppp]</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/configuration/ppp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ppp">
+<h1>[ppp]<a class="headerlink" href="#ppp" title="Link to this heading"></a></h1>
+<p>The Point-to-Point Protocol (PPP) provides a standard method for transporting multi-protocol datagrams over point-to-point links.  PPP also defines an extensible Link Control Protocol.
+Section <code class="docutils literal notranslate"><span class="pre">[ppp]</span></code> consist common ppp prams for PPPoE/PPtP/L2TP/SSTP.</p>
+<dl>
+<dt><strong>verbose=0|1</strong></dt><dd><p>Default value is <code class="docutils literal notranslate"><span class="pre">verbose=0</span></code></p>
+<p>Writes more detailed logs.</p>
+</dd>
+<dt><strong>min-mtu=n</strong></dt><dd><p>Default value is <code class="docutils literal notranslate"><span class="pre">min-mtu=100</span></code></p>
+<p>Minimum acceptable MTU.
+If client will try to negotiate less then specified MTU then it will be NAKed or disconnected if rejects greater MTU.</p>
+</dd>
+<dt><strong>mtu=n</strong></dt><dd><p>By default is not defined.</p>
+<p>MTU which will be negotiated if client’s MRU will be not acceptable.</p>
+</dd>
+<dt><strong>mru=n</strong></dt><dd><p>By default is not defined.</p>
+<p>Preferred MRU.</p>
+</dd>
+<dt><strong>accomp=allow|deny</strong></dt><dd><p>By default is: <code class="docutils literal notranslate"><span class="pre">accomp=deny</span></code></p>
+<p>Address/Control compression negotiation.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">allow</span></code> - prefere in send and don’t deny in receive directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deny</span></code> - disable in both directions.</p></li>
+</ul>
+</dd>
+<dt><strong>pcomp=allow|deny|n</strong></dt><dd><p>By default is: <code class="docutils literal notranslate"><span class="pre">pcomp=deny</span></code></p>
+<p>Protocol field compression negotiation.</p>
+<ul class="simple">
+<li><p>allow - prefere in send and don’t deny in receive directions.</p></li>
+<li><p>deny - disable in both directions.</p></li>
+</ul>
+</dd>
+<dt><strong>ccp=n</strong></dt><dd><p>By default is enabled: <code class="docutils literal notranslate"><span class="pre">ccp=1</span></code></p>
+<p>For disable CCP (<em>Compression Control Protocol</em>) negotiation set <code class="docutils literal notranslate"><span class="pre">ccp=0</span></code></p>
+</dd>
+<dt><strong>ccp-max-configure=n</strong></dt><dd><p>By default is: <code class="docutils literal notranslate"><span class="pre">ccp-max-configure=3</span></code></p>
+<p><strong>TODO</strong></p>
+</dd>
+<dt><strong>sid-case=upper|lower</strong></dt><dd><p>By default is: <code class="docutils literal notranslate"><span class="pre">sid-case=lower</span></code></p>
+<p>Specifies in which case generate session identifier.</p>
+</dd>
+<dt><strong>mppe=require|prefer|deny</strong></dt><dd><blockquote>
+<div><p>Default behavior - don’t ask client for mppe, but allow it if client wants.</p>
+<p>Specifies mppe negotioation preference.</p>
+<p><code class="docutils literal notranslate"><span class="pre">require</span></code> - ask client for mppe, if it rejects drop connection.</p>
+<p><code class="docutils literal notranslate"><span class="pre">prefer</span></code> - ask client for mppe, if it rejects don’t fail.</p>
+<p><code class="docutils literal notranslate"><span class="pre">deny</span></code> - deny mppe.</p>
+</div></blockquote>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<p>RADIUS may override this option by MS-MPPE-Encryption-Policy attribute.
+MPPE requires defined <code class="docutils literal notranslate"><span class="pre">ccp=1</span></code></p>
+</div>
+</dd>
+<dt><strong>ipv4=deny|allow|prefer|require</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">ipv4=allow</span></code></p>
+<p>Specifies IPv4 (IPCP) negotioation algorithm:</p>
+<p><code class="docutils literal notranslate"><span class="pre">deny</span></code> - don’t negotiate IPv4.</p>
+<p><code class="docutils literal notranslate"><span class="pre">allow</span></code> - negotiate IPv4 only if client requests.</p>
+<p><code class="docutils literal notranslate"><span class="pre">prefer</span></code> - ask client for IPv4 negotiation, don’t fail if he rejects.</p>
+<p><code class="docutils literal notranslate"><span class="pre">require</span></code> - require IPv4 negotiation.</p>
+</dd>
+<dt><strong>ipv6=deny|allow|prefer|require</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">ipv6=deny</span></code></p>
+<p>Specify IPv6 (IPCP) negotioation algorithm:</p>
+<p><code class="docutils literal notranslate"><span class="pre">deny</span></code> - don’t negotiate IPv6.</p>
+<p><code class="docutils literal notranslate"><span class="pre">allow</span></code> - negotiate IPv6 only if client requests.</p>
+<p><code class="docutils literal notranslate"><span class="pre">prefer</span></code> - ask client for IPv6 negotiation, don’t fail if he rejects.</p>
+<p><code class="docutils literal notranslate"><span class="pre">require</span></code> - require IPv6 negotiation.</p>
+</dd>
+<dt><strong>ipv6-intf-id=x:x:x:x|random</strong></dt><dd><p>By default is fixed.</p>
+<p>Specify fixed or random interface identifier for IPv6.</p>
+</dd>
+<dt><strong>ipv6-peer-intf-id=x:x:x:x|random|ipv4|calling-sid</strong></dt><dd><p>By default is fixed.</p>
+<p>Specifies peer interface identifier for IPv6.</p>
+<p><code class="docutils literal notranslate"><span class="pre">random</span></code> - generate random interface identifier for peer.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ipv4</span></code> - calculate interface identifier from IPv4 address, for example <code class="docutils literal notranslate"><span class="pre">192:168:0:1</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">calling-sid</span></code> - calculate interface identifier from Calling-Station-Id.</p>
+</dd>
+<dt><strong>ipv6-accept-peer-intf-id=0|1</strong></dt><dd><p>By default is not defined.</p>
+<p>Specify whether to accept peer’s interface identifier.</p>
+</dd>
+<dt><strong>lcp-echo-interval=n</strong></dt><dd><p>By default is disabled: <code class="docutils literal notranslate"><span class="pre">lcp-echo-interval=0</span></code></p>
+<p>If this option is given and greater then 0 then lcp module will send echo-request every n seconds.</p>
+</dd>
+<dt><strong>lcp-echo-failure=n</strong></dt><dd><p>By default is disabled: <code class="docutils literal notranslate"><span class="pre">lcp-echo-failure=0</span></code></p>
+<p>Specifies maximum number of echo-requests may be sent without valid echo-reply, if exceeds connection will be terminated.</p>
+</dd>
+<dt><strong>lcp-echo-timeout=sec</strong></dt><dd><p>By default is disabled: <code class="docutils literal notranslate"><span class="pre">lcp-echo-timeout=0</span></code></p>
+<p>Specifies timeout in seconds to wait for any peer activity. If this option specified it turns on adaptive <em>lcp echo functionality</em> and <code class="docutils literal notranslate"><span class="pre">lcp-echo-failure</span></code> is not used. Also required set <code class="docutils literal notranslate"><span class="pre">lcp-echo-interval</span></code>.</p>
+</dd>
+<dt><strong>unit-cache=n</strong></dt><dd><p>By default is disabled: <code class="docutils literal notranslate"><span class="pre">unit-cache=0</span></code></p>
+<p>Specifies number of interfaces to keep in cache. It means that don’t destroy interface after corresponding session is destroyed, instead place it to cache and use it later for new sessions repeatedly. This should reduce kernel-level interface creation/deletion rate lack.</p>
+</dd>
+<dt><strong>unit-preallocate=0|1</strong></dt><dd><p>By default is <code class="docutils literal notranslate"><span class="pre">unit-preallocate=0</span></code>, ppp unit (interface) will allocate after authorization.</p>
+<p>Specified will accel-ppp allocate ppp unit (interface) before authorization, so Nas-Port and Nas-Port-Id would be defined in Access-Request phase.</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chap_secrets.html" class="btn btn-neutral float-left" title="[chap-secrets]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pppoe.html" class="btn btn-neutral float-right" title="[pppoe]" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

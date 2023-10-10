@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recommendations &mdash; Accel-ppp 1.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2d52a127"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BRAS tuning" href="BRAS_tuning.html" />
+    <link rel="prev" title="Control features" href="control_features.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Accel-ppp
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="control_features.html">Control features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Recommendations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#enable-forwarding">Enable forwarding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mtu">MTU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#increase-arp-cache-size">Increase ARP cache size</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BRAS_tuning.html">BRAS tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radius_features.html">RADIUS and DM/CoA features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Accel-ppp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Recommendations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guides/recommendations.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="recommendations">
+<h1>Recommendations<a class="headerlink" href="#recommendations" title="Link to this heading"></a></h1>
+<section id="enable-forwarding">
+<h2>Enable forwarding<a class="headerlink" href="#enable-forwarding" title="Link to this heading"></a></h2>
+<p>To enable packet forwarding need edit /etc/sysctl.conf and add or uncomment next:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>net.ipv4.ip_forward<span class="o">=</span><span class="m">1</span>
+net.ipv6.conf.all.forwarding<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>For apply this params now, use command <code class="docutils literal notranslate"><span class="pre">sysctl</span> <span class="pre">-p</span></code> or after reboot server this params will be applied automatically.</p>
+</section>
+<section id="mtu">
+<h2>MTU<a class="headerlink" href="#mtu" title="Link to this heading"></a></h2>
+<p>If used vlan-per-user often required 802.1ad standard also called as QinQ or Q-in-Q, then need to set MTU on main interface and S-VLAN, because adding to headed one more field.
+Interface which using QinQ usually consist of <code class="docutils literal notranslate"><span class="pre">&lt;interface_name&gt;.&lt;S-VLAN&gt;.&lt;C-VLAN&gt;</span></code>.
+S-VLAN (Service VLAN) is TAG which wrap C-VLAN (Customer VLAN).</p>
+<p>As example:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>MTU
+<span class="w">           </span><span class="m">1504</span>
+<span class="w">             </span><span class="p">|</span><span class="w">   </span><span class="m">1504</span>
+<span class="w">             </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="m">1500</span>
+<span class="w">             </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="p">|</span>
+<span class="w">          </span>eth0.2001.101
+<span class="w">             </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="p">|</span>
+<span class="w">             </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span>C-VLAN
+<span class="w">             </span><span class="p">|</span><span class="w">   </span>S-VLAN
+<span class="w">             </span>Interface
+</pre></div>
+</div>
+<p>Set up MTU on interface eth0 and interface with S-VLAN</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>eth0<span class="w"> </span>mtu<span class="w"> </span><span class="m">1504</span>
+ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>eth0.2001<span class="w"> </span>mtu<span class="w"> </span><span class="m">1504</span>
+</pre></div>
+</div>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note:</p>
+<p>If used <code class="docutils literal notranslate"><span class="pre">bonding</span></code> need change MTU on <em>bonding</em> (bond0) and <em>slaves</em> (eth0, eth1 …) interfaces.</p>
+</div>
+</section>
+<section id="increase-arp-cache-size">
+<h2>Increase ARP cache size<a class="headerlink" href="#increase-arp-cache-size" title="Link to this heading"></a></h2>
+<p>If accel-ppp used as DHCP BRAS important to increase ARP cache size, otherwise you can cache overflow and clients have lost connections. Edit /etc/sysctl.conf and add next:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>net.ipv4.neigh.default.gc_thresh1<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4096</span>
+net.ipv4.neigh.default.gc_thresh2<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8192</span>
+net.ipv4.neigh.default.gc_thresh3<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12288</span>
+net.ipv6.neigh.default.gc_thresh1<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4096</span>
+net.ipv6.neigh.default.gc_thresh2<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8192</span>
+net.ipv6.neigh.default.gc_thresh3<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12288</span>
+</pre></div>
+</div>
+<p>For apply this params now, use command <code class="docutils literal notranslate"><span class="pre">sysctl</span> <span class="pre">-p</span></code> or after reboot server this params will be applied automatically.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="control_features.html" class="btn btn-neutral float-left" title="Control features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="BRAS_tuning.html" class="btn btn-neutral float-right" title="BRAS tuning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Accel-ppp Dev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
